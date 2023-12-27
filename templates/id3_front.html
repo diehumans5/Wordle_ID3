@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordle w/ ID3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /*add Custom CSS styles*/
+        .jumbotron {
+            background-color: #FF5733;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div style="position: sticky; top: 10px;left:10px;background-color: black;border-radius: 5px;width: 7%;text-align: center;text-justify: auto;vertical-align: middle;"><a href="/" style="color: white;font-size: large;">Back</a></div>
+    <div class="container mt-2">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="new_word">Enter Word:</label>
+                    <input type="text" class="form-control"  pattern = "[a-z]{5}" name = "new_word" placeholder="Enter a 5 letter word" required="required">
+            </div>
+            {% if guesses %}
+            <table class="table th-sm">
+                {% for i in range(0,lent) %}
+                <tr><td style="background-color: {{colours[i][0]}}">{{guesses[i][0]}}</td><td style="background-color: {{colours[i][1]}};">{{guesses[i][1]}}</td><td style="background-color: {{colours[i][2]}};">{{guesses[i][2]}}</td><td style="background-color: {{colours[i][3]}};">{{guesses[i][3]}}</td><td style="background-color: {{colours[i][4]}};">{{guesses[i][4]}}</td></tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <button type="submit" class="btn btn-danger">Enter</button>
+        </form>
+        <label>Best word</label>
+        <select class="form-control">
+            {% for word in bestwords %}
+            <option>{{word[0]}}->{{word[1]}}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <br/>
+        {% if posswords %}
+        <label>Possible words</label>
+        <select class="form-control">
+            {% for word in posswords %}
+            <option>{{word}}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+    </div>
+
+</body>
+</html>
